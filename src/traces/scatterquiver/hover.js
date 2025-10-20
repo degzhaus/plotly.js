@@ -37,7 +37,7 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode) {
 
     if(!closestPoint || minDistance > 50) return;
 
-    // Create hover point data
+    // Create hover point data with proper label values and spikeline support
     var hoverPoint = {
         x: closestPoint.x,
         y: closestPoint.y,
@@ -46,7 +46,23 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode) {
         text: trace.text ? trace.text[closestIndex] : '',
         name: trace.name || '',
         trace: trace,
-        index: closestIndex
+        index: closestIndex,
+        // Set label values for proper hover formatting
+        xLabelVal: closestPoint.x,
+        yLabelVal: closestPoint.y,
+        uLabelVal: trace.u[closestIndex],
+        vLabelVal: trace.v[closestIndex],
+        // Add spikeline support
+        xa: pointData.xa,
+        ya: pointData.ya,
+        x0: closestPoint.x,
+        x1: closestPoint.x,
+        y0: closestPoint.y,
+        y1: closestPoint.y,
+        distance: minDistance,
+        spikeDistance: minDistance,
+        curveNumber: trace.index,
+        color: trace.line ? trace.line.color : 'blue'
     };
 
     // Set hover text

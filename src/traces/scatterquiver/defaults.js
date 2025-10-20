@@ -36,8 +36,8 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
         simplify: traceIn.line && traceIn.line.simplify !== undefined ? traceIn.line.simplify : true
     };
 
-    // Hover and interaction - fix the hoverinfo issue
-    traceOut.hoverinfo = traceIn.hoverinfo || 'x+y+u+v+name';
+    // Hover and interaction - let the plots module handle hoverinfo defaults
+    // traceOut.hoverinfo will be set by Lib.coerceHoverinfo in plots.js
     traceOut.hovertemplate = traceIn.hovertemplate;
 
     // Text

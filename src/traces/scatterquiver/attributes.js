@@ -120,9 +120,12 @@ var attrs = {
         editType: 'calc',
         description: 'Sets the positions of the `text` elements with respects to the (x,y) coordinates.'
     },
+    // Text font
     textfont: fontAttrs({
         editType: 'calc',
-        colorEditType: 'style'
+        colorEditType: 'style',
+        arrayOk: true,
+        description: 'Sets the text font.'
     }),
 
     // Selection and styling
@@ -139,7 +142,16 @@ var attrs = {
                 editType: 'style',
                 description: 'Sets the line width of selected points.'
             }
-        }
+        },
+        textfont: {
+            color: {
+                valType: 'color',
+                editType: 'style',
+                description: 'Sets the text font color of selected points, applied only when a selection exists.'
+            },
+            editType: 'style'
+        },
+        editType: 'style'
     },
     unselected: {
         line: {
@@ -154,7 +166,16 @@ var attrs = {
                 editType: 'style',
                 description: 'Sets the line width of unselected points.'
             }
-        }
+        },
+        textfont: {
+            color: {
+                valType: 'color',
+                editType: 'style',
+                description: 'Sets the text font color of unselected points, applied only when a selection exists.'
+            },
+            editType: 'style'
+        },
+        editType: 'style'
     }
 };
 
@@ -163,7 +184,8 @@ extendFlat(attrs, baseAttrs);
 
 // Add hoverinfo with proper flags for quiver
 attrs.hoverinfo.flags = ['x', 'y', 'u', 'v', 'text', 'name'];
-attrs.hoverinfo.dflt = 'x+y+u+v+name';
+// Use 'all' as default - Lib.coerceHoverinfo will handle single vs multi-trace logic
+attrs.hoverinfo.dflt = 'all';
 
 // Add hovertemplate
 attrs.hovertemplate = hovertemplateAttrs({}, {
