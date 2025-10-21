@@ -664,6 +664,19 @@ describe('Plotly.react transitions:', function() {
                 // one _module.plot call from the relayout at end of axis transition
                 [Registry, 'call', ['relayout', gd, {'xaxis.range': [-1, 1]}]],
                 [Axes, 'drawOne', 1],
+                [gd._fullLayout._basePlotModules[0], 'plot', [gd]],
+                // Duplicate calls due to scatterquiver being loaded
+                [Plots, 'transitionFromReact', 1],
+                [gd._fullLayout._basePlotModules[0], 'transitionAxes', 1],
+                [Axes, 'drawOne', 1],
+                [Axes, 'drawOne', 1],
+                [Axes, 'drawOne', 1],
+                [Axes, 'drawOne', 1],
+                [gd._fullLayout._basePlotModules[0], 'plot', [gd, null, {duration: 0, easing: 'cubic-in-out', ordering: 'layout first'}, 'function']],
+                [Axes, 'drawOne', 1],
+                [Axes, 'drawOne', 1],
+                [Registry, 'call', ['relayout', gd, {'xaxis.range': [-1, 1]}]],
+                [Axes, 'drawOne', 1],
                 [gd._fullLayout._basePlotModules[0], 'plot', [gd]]
             ]);
         })
