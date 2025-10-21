@@ -1,5 +1,8 @@
 'use strict';
 
+var Lib = require('../../lib');
+var attributes = require('./attributes');
+
 module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout) {
     // Simple validation - just check if we have the required arrays
     if(!traceIn.x || !Array.isArray(traceIn.x) || traceIn.x.length === 0 ||
@@ -19,6 +22,11 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     traceOut.y = traceIn.y;
     traceOut.u = traceIn.u;
     traceOut.v = traceIn.v;
+
+    // Selection styling - use coerce to set proper defaults
+    function coerce(attr, dflt) {
+        return Lib.coerce(traceIn, traceOut, attributes, attr, dflt);
+    }
 
     // Set default values
     traceOut.scale = traceIn.scale !== undefined ? traceIn.scale : 0.1;
@@ -44,11 +52,16 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     // Text
     traceOut.text = traceIn.text;
     traceOut.textposition = traceIn.textposition || 'middle center';
-    traceOut.textfont = traceIn.textfont || {};
-
-    // Selection styling
-    traceOut.selected = traceIn.selected || {};
-    traceOut.unselected = traceIn.unselected || {};
+    
+    // Use Lib.coerceFont to set textfont properly
+    Lib.coerceFont(coerce, 'textfont', layout.font);
+    
+    coerce('selected.line.color');
+    coerce('selected.line.width');
+    coerce('selected.textfont.color');
+    coerce('unselected.line.color');
+    coerce('unselected.line.width');
+    coerce('unselected.textfont.color');
 
     // Set the data length
     traceOut._length = traceIn.x.length;
