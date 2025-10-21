@@ -79219,6 +79219,7 @@
        "longdashdot"
       ]
      },
+     "editType": "style",
      "role": "object",
      "shape": {
       "description": "Determines the line shape.",
@@ -79302,6 +79303,7 @@
        "editType": "style",
        "valType": "color"
       },
+      "editType": "style",
       "role": "object",
       "width": {
        "description": "Sets the line width of selected points.",
@@ -79548,6 +79550,7 @@
        "editType": "style",
        "valType": "color"
       },
+      "editType": "style",
       "role": "object",
       "width": {
        "description": "Sets the line width of unselected points.",
