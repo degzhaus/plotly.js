@@ -183,9 +183,11 @@ var attrs = {
 extendFlat(attrs, baseAttrs);
 
 // Add hoverinfo with proper flags for quiver
-attrs.hoverinfo.flags = ['x', 'y', 'u', 'v', 'text', 'name'];
-// Use 'all' as default - Lib.coerceHoverinfo will handle single vs multi-trace logic
-attrs.hoverinfo.dflt = 'all';
+// We need to create a new object to avoid mutating the shared base attributes
+attrs.hoverinfo = extendFlat({}, baseAttrs.hoverinfo, {
+    flags: ['x', 'y', 'u', 'v', 'text', 'name'],
+    dflt: 'all'
+});
 
 // Add hovertemplate
 attrs.hovertemplate = hovertemplateAttrs({}, {
