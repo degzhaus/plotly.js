@@ -16586,7 +16586,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
@@ -20382,7 +20382,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
@@ -21926,7 +21926,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
@@ -30429,7 +30429,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
@@ -39027,7 +39027,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
@@ -40195,7 +40195,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
@@ -42845,7 +42845,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
@@ -44543,7 +44543,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
@@ -52484,7 +52484,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
@@ -59077,7 +59077,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
@@ -69015,7 +69015,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
@@ -78836,7 +78836,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
@@ -79306,6 +79306,7 @@
      "valType": "number"
     },
     "selected": {
+     "editType": "style",
      "line": {
       "color": {
        "description": "Sets the line color of selected points.",
@@ -79320,7 +79321,16 @@
        "valType": "number"
       }
      },
-     "role": "object"
+     "role": "object",
+     "textfont": {
+      "color": {
+       "description": "Sets the text font color of selected points, applied only when a selection exists.",
+       "editType": "style",
+       "valType": "color"
+      },
+      "editType": "style",
+      "role": "object"
+     }
     },
     "selectedpoints": {
      "description": "Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.",
@@ -79360,19 +79370,32 @@
     },
     "textfont": {
      "color": {
+      "arrayOk": true,
       "editType": "style",
       "valType": "color"
      },
-     "description": "",
+     "colorsrc": {
+      "description": "Sets the source reference on Chart Studio Cloud for `color`.",
+      "editType": "none",
+      "valType": "string"
+     },
+     "description": "Sets the text font.",
      "editType": "calc",
      "family": {
+      "arrayOk": true,
       "description": "HTML font family - the typeface that will be applied by the web browser. The web browser can only apply a font if it is available on the system where it runs. Provide multiple font families, separated by commas, to indicate the order in which to apply fonts if they aren't available.",
       "editType": "calc",
       "noBlank": true,
       "strict": true,
       "valType": "string"
      },
+     "familysrc": {
+      "description": "Sets the source reference on Chart Studio Cloud for `family`.",
+      "editType": "none",
+      "valType": "string"
+     },
      "lineposition": {
+      "arrayOk": true,
       "description": "Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations e.g. *under+over*, etc.",
       "dflt": "none",
       "editType": "calc",
@@ -79386,19 +79409,37 @@
       ],
       "valType": "flaglist"
      },
+     "linepositionsrc": {
+      "description": "Sets the source reference on Chart Studio Cloud for `lineposition`.",
+      "editType": "none",
+      "valType": "string"
+     },
      "role": "object",
      "shadow": {
+      "arrayOk": true,
       "description": "Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.",
       "dflt": "none",
       "editType": "calc",
       "valType": "string"
      },
+     "shadowsrc": {
+      "description": "Sets the source reference on Chart Studio Cloud for `shadow`.",
+      "editType": "none",
+      "valType": "string"
+     },
      "size": {
+      "arrayOk": true,
       "editType": "calc",
       "min": 1,
       "valType": "number"
      },
+     "sizesrc": {
+      "description": "Sets the source reference on Chart Studio Cloud for `size`.",
+      "editType": "none",
+      "valType": "string"
+     },
      "style": {
+      "arrayOk": true,
       "description": "Sets whether a font should be styled with a normal or italic face from its family.",
       "dflt": "normal",
       "editType": "calc",
@@ -79408,7 +79449,13 @@
        "italic"
       ]
      },
+     "stylesrc": {
+      "description": "Sets the source reference on Chart Studio Cloud for `style`.",
+      "editType": "none",
+      "valType": "string"
+     },
      "textcase": {
+      "arrayOk": true,
       "description": "Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each word capitalized.",
       "dflt": "normal",
       "editType": "calc",
@@ -79420,7 +79467,13 @@
        "lower"
       ]
      },
+     "textcasesrc": {
+      "description": "Sets the source reference on Chart Studio Cloud for `textcase`.",
+      "editType": "none",
+      "valType": "string"
+     },
      "variant": {
+      "arrayOk": true,
       "description": "Sets the variant of the font.",
       "dflt": "normal",
       "editType": "calc",
@@ -79434,7 +79487,13 @@
        "unicase"
       ]
      },
+     "variantsrc": {
+      "description": "Sets the source reference on Chart Studio Cloud for `variant`.",
+      "editType": "none",
+      "valType": "string"
+     },
      "weight": {
+      "arrayOk": true,
       "description": "Sets the weight (or boldness) of the font.",
       "dflt": "normal",
       "editType": "calc",
@@ -79445,6 +79504,11 @@
       "max": 1000,
       "min": 1,
       "valType": "integer"
+     },
+     "weightsrc": {
+      "description": "Sets the source reference on Chart Studio Cloud for `weight`.",
+      "editType": "none",
+      "valType": "string"
      }
     },
     "textposition": {
@@ -79488,6 +79552,7 @@
      "valType": "any"
     },
     "unselected": {
+     "editType": "style",
      "line": {
       "color": {
        "description": "Sets the line color of unselected points.",
@@ -79502,7 +79567,16 @@
        "valType": "number"
       }
      },
-     "role": "object"
+     "role": "object",
+     "textfont": {
+      "color": {
+       "description": "Sets the text font color of unselected points, applied only when a selection exists.",
+       "editType": "style",
+       "valType": "color"
+      },
+      "editType": "style",
+      "role": "object"
+     }
     },
     "usrc": {
      "description": "Sets the source reference on Chart Studio Cloud for `u`.",
@@ -84254,7 +84328,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
@@ -91804,7 +91878,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
@@ -94495,7 +94569,7 @@
     "hoverinfo": {
      "arrayOk": true,
      "description": "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-     "dflt": "x+y+u+v+name",
+     "dflt": "all",
      "editType": "none",
      "extras": [
       "all",
