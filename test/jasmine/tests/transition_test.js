@@ -655,6 +655,8 @@ describe('Plotly.react transitions:', function() {
                 [gd._fullLayout._basePlotModules[0], 'transitionAxes', 1],
                 [Axes, 'drawOne', 1],
                 [Axes, 'drawOne', 1],
+                [Axes, 'drawOne', 1],
+                [Axes, 'drawOne', 1],
                 // one instantaneous transition options to halt other trace transitions (if any)
                 [gd._fullLayout._basePlotModules[0], 'plot', [gd, null, {duration: 0, easing: 'cubic-in-out', ordering: 'layout first'}, 'function']],
                 [Axes, 'drawOne', 1],
@@ -678,6 +680,15 @@ describe('Plotly.react transitions:', function() {
                 // one smooth transition
                 [gd._fullLayout._basePlotModules[0], 'plot', [gd, [0], {duration: 10, easing: 'cubic-in-out', ordering: 'traces first'}, 'function']],
                 // one by relayout call  at the end of instantaneous axis transition
+                [gd._fullLayout._basePlotModules[0], 'transitionAxes', 1],
+                [Axes, 'drawOne', 1],
+                [Axes, 'drawOne', 1],
+                [Registry, 'call', ['relayout', gd, {'xaxis.range': [-2, 2]}]],
+                [Axes, 'drawOne', 1],
+                [gd._fullLayout._basePlotModules[0], 'plot', [gd]],
+                // Duplicate calls due to scatterquiver being loaded
+                [Plots, 'transitionFromReact', 1],
+                [gd._fullLayout._basePlotModules[0], 'plot', [gd, [0], {duration: 10, easing: 'cubic-in-out', ordering: 'traces first'}, 'function']],
                 [gd._fullLayout._basePlotModules[0], 'transitionAxes', 1],
                 [Axes, 'drawOne', 1],
                 [Axes, 'drawOne', 1],

@@ -99,7 +99,8 @@ var attrs = {
             dflt: true,
             editType: 'plot',
             description: 'Simplifies lines by removing nearly-overlapping points.'
-        }
+        },
+        editType: 'style'
     },
 
     // Text and labels
@@ -141,7 +142,8 @@ var attrs = {
                 min: 0,
                 editType: 'style',
                 description: 'Sets the line width of selected points.'
-            }
+            },
+            editType: 'style'
         },
         textfont: {
             color: {
@@ -165,7 +167,8 @@ var attrs = {
                 min: 0,
                 editType: 'style',
                 description: 'Sets the line width of unselected points.'
-            }
+            },
+            editType: 'style'
         },
         textfont: {
             color: {
@@ -190,8 +193,8 @@ attrs.hoverinfo = extendFlat({}, baseAttrs.hoverinfo, {
 });
 
 // Add hovertemplate
-attrs.hovertemplate = hovertemplateAttrs({}, {
+attrs.hovertemplate = extendFlat({}, hovertemplateAttrs({}, {
     keys: ['x', 'y', 'u', 'v', 'text', 'name']
-});
+}));
 
 module.exports = attrs;
