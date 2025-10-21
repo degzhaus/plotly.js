@@ -35,7 +35,7 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode) {
         }
     }
 
-    if(!closestPoint || minDistance > 50) return;
+    if(!closestPoint || minDistance > (trace.hoverdistance || 20)) return;
 
     // Create hover point data with proper label values and spikeline support
     var hoverPoint = {

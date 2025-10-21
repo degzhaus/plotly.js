@@ -25,6 +25,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     traceOut.arrow_scale = traceIn.arrow_scale !== undefined ? traceIn.arrow_scale : 0.3;
     traceOut.angle = traceIn.angle !== undefined ? traceIn.angle : Math.PI / 9;
     traceOut.scaleratio = traceIn.scaleratio;
+    traceOut.hoverdistance = traceIn.hoverdistance !== undefined ? traceIn.hoverdistance : 20;
 
     // Line styling
     traceOut.line = {

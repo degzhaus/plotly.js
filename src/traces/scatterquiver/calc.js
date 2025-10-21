@@ -3,69 +3,8 @@
 var Lib = require('../../lib');
 
 /**
- * Calculate arrow positions and orientations for quiver plot
- * Ported from plotly.py _quiver.py
- */
-function calculateArrows(x, y, u, v, scale, arrowScale, angle, scaleRatio) {
-    var len = x.length;
-    var barbX = [];
-    var barbY = [];
-    var arrowX = [];
-    var arrowY = [];
-
-    // Scale u and v to avoid overlap
-    var scaledU = u.map(function(val) { return val * scale * (scaleRatio || 1); });
-    var scaledV = v.map(function(val) { return val * scale; });
-
-    // Calculate arrow endpoints
-    var endX = x.map(function(val, i) { return val + scaledU[i]; });
-    var endY = y.map(function(val, i) { return val + scaledV[i]; });
-
-    // Create barb lines (main arrow shafts)
-    for(var i = 0; i < len; i++) {
-        barbX.push(x[i], endX[i], null);
-        barbY.push(y[i], endY[i], null);
-    }
-
-    // Calculate arrow heads
-    for(var i = 0; i < len; i++) {
-        var dx = endX[i] - x[i];
-        var dy = endY[i] - y[i];
-
-        // Calculate barb length
-        var barbLen = Math.sqrt(dx * dx / (scaleRatio || 1) + dy * dy);
-
-        // Calculate arrow head length
-        var arrowLen = barbLen * arrowScale;
-
-        // Calculate barb angle
-        var barbAng = Math.atan2(dy, dx / (scaleRatio || 1));
-
-        // Calculate arrow head angles
-        var ang1 = barbAng + angle;
-        var ang2 = barbAng - angle;
-
-        // Calculate arrow head points
-        var point1X = endX[i] - arrowLen * Math.cos(ang1) * (scaleRatio || 1);
-        var point1Y = endY[i] - arrowLen * Math.sin(ang1);
-        var point2X = endX[i] - arrowLen * Math.cos(ang2) * (scaleRatio || 1);
-        var point2Y = endY[i] - arrowLen * Math.sin(ang2);
-
-        // Add arrow head lines
-        arrowX.push(point1X, endX[i], point2X, null);
-        arrowY.push(point1Y, endY[i], point2Y, null);
-    }
-
-    return {
-        barbX: barbX,
-        barbY: barbY,
-        arrowX: arrowX,
-        arrowY: arrowY
-    };
-}
-
-/**
  * Main calculation function for scatterquiver trace
+ * Creates calcdata with arrow path data for each vector
  */
 module.exports = function calc(gd, trace) {
     var x = trace.x;
@@ -76,9 +15,6 @@ module.exports = function calc(gd, trace) {
     var arrowScale = trace.arrow_scale;
     var angle = trace.angle;
     var scaleRatio = trace.scaleratio;
-
-    // Calculate arrow positions
-    var arrowData = calculateArrows(x, y, u, v, scale, arrowScale, angle, scaleRatio);
 
     // Create calcdata - one complete arrow per entry
     var calcdata = [];

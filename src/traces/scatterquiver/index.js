@@ -12,7 +12,11 @@ module.exports = {
     supplyDefaults: require('./defaults'),
     calc: require('./calc'),
     plot: require('./plot'),
+    style: require('./style'),
+    styleOnSelect: require('../scatter/style').styleOnSelect,
     hoverPoints: require('./hover'),
+    eventData: require('./eventData'),
+    selectPoints: require('./selectPoints'),
     animatable: true,
 
     meta: {

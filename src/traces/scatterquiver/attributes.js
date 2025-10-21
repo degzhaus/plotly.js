@@ -62,6 +62,13 @@ var attrs = {
         editType: 'calc',
         description: 'The ratio between the scale of the y-axis and the scale of the x-axis (scale_y / scale_x). Default = null, the scale ratio is not fixed.'
     },
+    hoverdistance: {
+        valType: 'number',
+        min: -1,
+        dflt: 20,
+        editType: 'calc',
+        description: 'Maximum distance (in pixels) to look for nearby arrows on hover.'
+    },
 
     // Line styling for arrows
     line: {

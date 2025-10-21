@@ -103,15 +103,10 @@ function plotOne(gd, idx, plotinfo, cdscatter, cdscatterAll, element, transition
         }
 
         path.attr('d', pathData);
-
-        // Apply line styling manually
-        var lineColor = trace.line.color || 'blue';
-        var lineWidth = trace.line.width || 2;
-        
-        path.attr('stroke', lineColor)
-            .attr('stroke-width', lineWidth)
-            .attr('fill', 'none');
     });
+
+    // Apply styling using Plotly's standard styling system
+    Drawing.lineGroupStyle(lineSegments, trace.line || {});
 
     // Handle transitions
     if(transitionOpts && transitionOpts.duration > 0) {
